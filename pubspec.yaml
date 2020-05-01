@@ -28,6 +28,7 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^0.1.2
   google_maps_flutter: 0.5.26+2
+  firebase_storage:
 
 dev_dependencies:
   flutter_test:
@@ -51,6 +52,7 @@ flutter:
   #  - images/a_dot_ham.jpeg
   assets:
     - images/network.gif
+    - images/profileimg.png
     - assets/profile1.png
     - images/loading.gif
   # An image asset can refer to one or more resolution-specific "variants", see
