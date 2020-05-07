@@ -20,8 +20,6 @@ class _During_navigationState extends State<During_navigation> {
   @override
   Widget build(BuildContext context) {
     return Container(
-	    color: Colors.white,
-	    
 	    child: Column(
 	      children: <Widget>[
 	        Padding(
@@ -30,7 +28,7 @@ class _During_navigationState extends State<During_navigation> {
 	        ),
 		      
 		      Padding(
-		        padding:EdgeInsets.only(top: 20, left: 50),
+		        padding: const EdgeInsets.only(top: 20, left: 50),
 		        child: RaisedButton(
 			       child: Text("Reached the destination "),
 			       onPressed: (){
@@ -40,7 +38,8 @@ class _During_navigationState extends State<During_navigation> {
 						       MaterialPageRoute(builder: (context) => Screen_shot(widget.object, widget.doc_name)));
 			       },
 		        ),
-		      ),
+		      )
+		      
 	      ],
 	    ),
     );

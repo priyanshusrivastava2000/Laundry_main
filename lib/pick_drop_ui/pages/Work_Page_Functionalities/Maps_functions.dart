@@ -32,7 +32,7 @@ class polyline {
 	GeoPoint a ;
 	
 	bool check;
-	List<LatLng> _listltlg= [];
+	List<LatLng> _listltlg=[];
 	
 	List<LatLng> getlist(){
 		print("list accessed");
@@ -45,11 +45,16 @@ class polyline {
 		Starts background location tracking
 		 */
 		BackgroundLocation.startLocationService();
-		_listltlg.add(LatLng(0,0));
+
 		BackgroundLocation.getLocationUpdates((location) {
-			print('getLocationUpdate invoked');
 			
-			Corordinate_filter(location);
+			a = GeoPoint(location.longitude , location.latitude);
+			
+			Firestore.instance.collection('LatLong Ponts').document(doc_name).setData({
+				'${DateTime.now()}' : a,
+			},merge: true);
+			this._listltlg.add(LatLng(location.latitude, location.longitude));
+			
 		});
 	}
 	
@@ -61,23 +66,5 @@ class polyline {
 		     Function that returns the plotted map on the screen and stops the background process
 		 */
 		BackgroundLocation.stopLocationService();
-		_listltlg.removeAt(0);
-	}
-	
-	
-	void Corordinate_filter(location) {
-		
-		print('inside filter property');
-		
-		if(_listltlg.last.longitude != location.longitude && _listltlg.last.latitude != location.latitude){
-			print('Condition for not recording same points ');
-			this._listltlg.add(LatLng(location.latitude,location.longitude));
-			
-			a=GeoPoint(location.latitude,location.longitude);
-			
-			Firestore.instance.collection('Location Points').document(doc_name).setData({
-				'${DateTime.now()}' : a
-			},merge: true);
-		}
 	}
 }
